@@ -1,3 +1,13 @@
-button {
-  margin: 8px;
+.row {
+  display: flex;
+
+  mat-tab-group {
+    flex: 1;
+  }
+
+  button {
+    margin: 8px 8px 8px auto;
+    align-self: flex-start;
+  }
 }
+

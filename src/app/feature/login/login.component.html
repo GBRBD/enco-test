@@ -7,8 +7,8 @@
           <mat-label>Username</mat-label>
           <input matInput placeholder="Your username goes here" formControlName="userName">
         </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter your password</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password">
         </mat-form-field>
         <mat-error *ngIf="error">You have entered an invalid username or password</mat-error>

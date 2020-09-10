@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { AddCityDialogComponent } from '@feature/dashboard/components/add-city-dialog/add-city-dialog.component';
 import { Store } from '@ngxs/store';
-import { append } from '@ngxs/store/operators';
+import { FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { AddCityDialogComponent } from '@feature/dashboard/components/add-city-dialog/add-city-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,8 +27,7 @@ export class DashboardComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddCityDialogComponent, {
-      width: '500px',
-      height: '250px',
+      width: '250px',
     });
     dialogRef.afterClosed().subscribe(city => {
       this.addTab(city);

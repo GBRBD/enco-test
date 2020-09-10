@@ -1,10 +1,11 @@
-<div mat-dialog-content>
-  <p>Add a city</p>
-  <mat-form-field>
-    <mat-label>City</mat-label>
-    <input matInput [(ngModel)]="city">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="city" [disabled]="city.length === 0">Add city</button>
+<div class="wrapper">
+  <div mat-dialog-content>
+    <h1>Add a city</h1>
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <input matInput [(ngModel)]="city">
+    </mat-form-field>
+  </div>
+    <button mat-raised-button color="primary"  [mat-dialog-close]="city" [disabled]="city.length === 0">Add city</button>
+
 </div>
