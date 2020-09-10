@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <mat-card>
+    <h1>Log in</h1>
+    <div class="content">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Your username goes here" formControlName="userName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+        <mat-error *ngIf="error">You have entered an invalid username or password</mat-error>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Log In</button>
+      </form>
+    </div>
+  </mat-card>
+</div>

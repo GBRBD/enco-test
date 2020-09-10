@@ -1,0 +1,25 @@
+.wrapper {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-card {
+    width: 500px;
+    justify-content: center;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+      }
+
+    }
+  }
+}

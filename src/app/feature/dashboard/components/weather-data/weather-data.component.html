@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <div class="data" *ngIf="!currentError; else currentErrorTemplate">
+    <div class="row">
+      <div class="label">Temperature</div>
+      <div class="data">{{weatherData?.temperature}} &#x2103;</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Humidity</div>
+      <div class="data">{{weatherData?.humidity}} %</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Pressure</div>
+      <div class="data">{{weatherData?.pressure}} hPa</div>
+    </div>
+
+    <div class="row">
+      <div class="label">Wind speed</div>
+      <div class="data">{{weatherData?.windSpeed}} m/s</div>
+
+    </div>
+
+    <div class="row">
+      <div class="label">Wind deg</div>
+      <div class="data">{{weatherData?.windDeg}} degrees</div>
+    </div>
+
+  </div>
+
+  <ng-template #currentErrorTemplate>
+    <div class="error">
+      Something went wrong while fetching current weather data.
+    </div>
+  </ng-template>
+
+  <div class="chart" *ngIf="!forecastError; else forecastErrorTemplate">
+    <h1>5 day forecast</h1>
+    <ngx-charts-line-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="multi"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [autoScale]="autoScale">
+    </ngx-charts-line-chart>
+  </div>
+  <ng-template #forecastErrorTemplate>
+    <div class="error">
+      Something went wrong while fetching for five day forecast data.
+    </div>
+  </ng-template>
+</div>
