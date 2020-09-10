@@ -1,9 +1,9 @@
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {Component, Input, OnDestroy, OnInit, Output, EventEmitter} from '@angular/core';
 
-import { WeatherData } from '@shared/models/weatherData';
-import { WeatherService } from '@core/services/weather.service';
+import {WeatherData} from '@shared/models/weatherData';
+import {WeatherService} from '@core/services/weather.service';
 
 @Component({
   selector: 'app-weather-data',
@@ -12,6 +12,9 @@ import { WeatherService } from '@core/services/weather.service';
 })
 export class WeatherDataComponent implements OnInit, OnDestroy {
   @Input() city: string;
+
+  @Output() delete = new EventEmitter();
+
   weatherData: WeatherData;
   destroy$: Subject<boolean> = new Subject<boolean>();
   currentError = false;
@@ -46,18 +49,17 @@ export class WeatherDataComponent implements OnInit, OnDestroy {
             windDeg: res.wind.deg,
           };
         },
-        error => {
+        () => {
           this.currentError = true;
         });
 
     this.weatherService.getFiveDayForecast(this.city)
       .pipe(takeUntil(this.destroy$))
       .subscribe(res => {
-        console.log(res.list);
 
         const series = [];
         res.list.forEach(x => {
-          series.push({ name: x.dt_txt, value: x.main.temp });
+          series.push({name: x.dt_txt, value: x.main.temp});
         });
 
         this.multi = [
@@ -67,7 +69,7 @@ export class WeatherDataComponent implements OnInit, OnDestroy {
           },
         ];
 
-      }, error => {
+      }, () => {
         this.forecastError = true;
       });
   }
@@ -77,4 +79,7 @@ export class WeatherDataComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
+  onDelete() {
+    this.delete.emit();
+  }
 }

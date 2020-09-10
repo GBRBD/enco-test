@@ -1,18 +1,14 @@
-<div>
-  <button mat-raised-button
-          (click)="openDialog()">
-    Add new tab
-  </button>
-</div>
+
+<div class="row">
 
 <mat-tab-group [selectedIndex]="selected.value"
                (selectedIndexChange)="selected.setValue($event)">
   <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-    <app-weather-data [city]="tab"></app-weather-data>
-
-    <button mat-raised-button
-            (click)="removeTab(index)">
-      Delete Tab
-    </button>
+    <app-weather-data [city]="tab" (delete)="removeTab(index)"></app-weather-data>
   </mat-tab>
 </mat-tab-group>
+<button mat-raised-button
+        color="primary"
+        (click)="openDialog()"> +
+</button>
+</div>
